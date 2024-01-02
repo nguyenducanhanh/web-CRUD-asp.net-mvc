@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebGiaiTrii.Models.Animal>
+@{
+    ViewBag.Title = "Animal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+
+    <a data-fancybox="gallery" href="/Home/AnimalDetail/@item.ID" data-caption="Caption for single image"><img src="@item.Image" alt=""></a>}

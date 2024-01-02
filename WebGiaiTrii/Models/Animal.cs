@@ -15,9 +15,12 @@ namespace WebGiaiTrii.Models
     public partial class Animal
     {
         public int ID { get; set; }
-        public string NameAnimals { get; set; }
-        public string ImageA01 { get; set; }
-        public string NoteA { get; set; }
-        public string BlogA { get; set; }
+        public string Name { get; set; }
+        public string Image { get; set; }
+        public string Note { get; set; }
+        public string Blog { get; set; }
+        public string Imagee { get; set; }
+        public string Image03 { get; set; }
+        public string Image04 { get; set; }
     }
 }

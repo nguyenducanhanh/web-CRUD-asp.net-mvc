@@ -15,33 +15,31 @@ namespace WebGiaiTrii.Controllers
             return View();
         }
 
-      
-
-
-
-
         public entertainmentEntities2 db = new entertainmentEntities2();
         public string message = "";
 
         public ActionResult NiceHouse()
         {
             var oo = db.Houses.ToList();
-
             return PartialView(oo);
         }
 
-      /*  public ActionResult NiceHouseDetail( int ID)
-        {
-            var ii = db.Houses.Find(ID);
-            return PartialView(ii);
-        }  */
-
         public ActionResult NiceHouseDetail(int ID)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
             House model2 = db.Houses.Find(ID);
-
             return View(model2);
+        }
+
+        public ActionResult Animal()
+        {
+            var an = db.Animals.ToList();
+            return PartialView(an);
+        }
+
+        public ActionResult AnimalDetail(int ID)
+        {
+            Animal mo = db.Animals.Find(ID);
+            return View(mo);
         }
 
 

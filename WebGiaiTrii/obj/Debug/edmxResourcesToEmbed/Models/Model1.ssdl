@@ -18,10 +18,13 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
-    <Property Name="NameAnimals" Type="nchar" MaxLength="40" />
-    <Property Name="ImageA01" Type="varchar(max)" />
-    <Property Name="NoteA" Type="nvarchar" MaxLength="50" />
-    <Property Name="BlogA" Type="nvarchar" MaxLength="200" />
+    <Property Name="Name" Type="nchar" MaxLength="40" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="Blog" Type="nvarchar" MaxLength="200" />
+    <Property Name="Imagee" Type="varchar(max)" />
+    <Property Name="Image03" Type="varchar(max)" />
+    <Property Name="Image04" Type="varchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -63,7 +66,10 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
     <Property Name="Name" Type="nchar" MaxLength="50" />
     <Property Name="Image" Type="varchar(max)" />
     <Property Name="Note" Type="nvarchar" MaxLength="50" />
-    <Property Name="Blog" Type="nvarchar(max)" />
+    <Property Name="Blog" Type="nvarchar" MaxLength="200" />
+    <Property Name="Imagee" Type="varchar(max)" />
+    <Property Name="Image03" Type="varchar(max)" />
+    <Property Name="Image04" Type="varchar(max)" />
   </EntityType>
   <Association Name="FK_Distributive_Account">
     <End Role="Account" Type="Self.Account" Multiplicity="1">

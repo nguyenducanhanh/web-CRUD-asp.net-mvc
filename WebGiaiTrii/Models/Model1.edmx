@@ -23,10 +23,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="NameAnimals" Type="nchar" MaxLength="40" />
-          <Property Name="ImageA01" Type="varchar(max)" />
-          <Property Name="NoteA" Type="nvarchar" MaxLength="50" />
-          <Property Name="BlogA" Type="nvarchar" MaxLength="200" />
+          <Property Name="Name" Type="nchar" MaxLength="40" />
+          <Property Name="Image" Type="varchar(max)" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="Blog" Type="nvarchar" MaxLength="200" />
+          <Property Name="Imagee" Type="varchar(max)" />
+          <Property Name="Image03" Type="varchar(max)" />
+          <Property Name="Image04" Type="varchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -68,7 +71,10 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
           <Property Name="Name" Type="nchar" MaxLength="50" />
           <Property Name="Image" Type="varchar(max)" />
           <Property Name="Note" Type="nvarchar" MaxLength="50" />
-          <Property Name="Blog" Type="nvarchar(max)" />
+          <Property Name="Blog" Type="nvarchar" MaxLength="200" />
+          <Property Name="Imagee" Type="varchar(max)" />
+          <Property Name="Image03" Type="varchar(max)" />
+          <Property Name="Image04" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_Distributive_Account">
           <End Role="Account" Type="Self.Account" Multiplicity="1">
@@ -125,8 +131,6 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
     <edmx:ConceptualModels>
       <Schema Namespace="entertainmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="entertainmentEntities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Natures" EntityType="entertainmentModel.Nature" />
-          <EntitySet Name="Animals" EntityType="entertainmentModel.Animal" />
           <EntitySet Name="Houses" EntityType="entertainmentModel.House" />
           <EntitySet Name="Accounts" EntityType="entertainmentModel.Account" />
           <EntitySet Name="Functions" EntityType="entertainmentModel.Function" />
@@ -139,27 +143,9 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
             <End Role="Function" EntitySet="Functions" />
             <End Role="Distributive" EntitySet="Distributives" />
           </AssociationSet>
+          <EntitySet Name="Animals" EntityType="entertainmentModel.Animal" />
+          <EntitySet Name="Natures" EntityType="entertainmentModel.Nature" />
         </EntityContainer>
-        <EntityType Name="Nature">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Blog" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Animal">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="NameAnimals" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="ImageA01" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="NoteA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BlogA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="House">
           <Key>
             <PropertyRef Name="ID" />
@@ -235,34 +221,38 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Blog" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Imagee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image03" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image04" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Nature">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Blog" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Imagee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image03" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Image04" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="entertainmentModelStoreContainer" CdmEntityContainer="entertainmentEntities2">
-          <EntitySetMapping Name="Natures">
-            <EntityTypeMapping TypeName="entertainmentModel.Nature">
-              <MappingFragment StoreEntitySet="Nature">
-                <ScalarProperty Name="Blog" ColumnName="Blog" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Animals">
-            <EntityTypeMapping TypeName="entertainmentModel.Animal">
-              <MappingFragment StoreEntitySet="Animals">
-                <ScalarProperty Name="BlogA" ColumnName="BlogA" />
-                <ScalarProperty Name="NoteA" ColumnName="NoteA" />
-                <ScalarProperty Name="ImageA01" ColumnName="ImageA01" />
-                <ScalarProperty Name="NameAnimals" ColumnName="NameAnimals" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Houses">
             <EntityTypeMapping TypeName="entertainmentModel.House">
               <MappingFragment StoreEntitySet="House">
@@ -306,6 +296,34 @@ warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a pr
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="idFunction" ColumnName="idFunction" />
                 <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Animals">
+            <EntityTypeMapping TypeName="entertainmentModel.Animal">
+              <MappingFragment StoreEntitySet="Animals">
+                <ScalarProperty Name="Image04" ColumnName="Image04" />
+                <ScalarProperty Name="Image03" ColumnName="Image03" />
+                <ScalarProperty Name="Imagee" ColumnName="Imagee" />
+                <ScalarProperty Name="Blog" ColumnName="Blog" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Natures">
+            <EntityTypeMapping TypeName="entertainmentModel.Nature">
+              <MappingFragment StoreEntitySet="Nature">
+                <ScalarProperty Name="Image04" ColumnName="Image04" />
+                <ScalarProperty Name="Image03" ColumnName="Image03" />
+                <ScalarProperty Name="Imagee" ColumnName="Imagee" />
+                <ScalarProperty Name="Blog" ColumnName="Blog" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,73 +10,140 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
 {
     public class AnimalsController : Controller
     {
-        // GET: Admin/Animals
-        public ActionResult List()
-        {
-            entertainmentEntities2 db = new entertainmentEntities2();
-            List<Animal> house = db.Animals.ToList();
-            return View(house);
+        entertainmentEntities2 db = new entertainmentEntities2();
+        public ActionResult ListAnimals()
+        {        
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                List<Animal> animal = db.Animals.ToList();
+                return View(animal);
+            }
         }
-
 
         public ActionResult Create()
         {
-            return View();
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
-        public ActionResult Create(Animal model, HttpPostedFileBase file)
+        public ActionResult Create(Animal model, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
         {
-            if (file.ContentLength > 0)
+            if (file1 != null && file1.ContentLength > 0 && file2 != null && file2.ContentLength > 0 && file3 != null && file3.ContentLength > 0 && file4 != null && file4.ContentLength > 0)
             {
-                string thuMuc = "/DataIo";
-                string name = file.FileName;
-                var fullPath = Server.MapPath(thuMuc) + name;
-                file.SaveAs(fullPath);
-                model.ImageA01 = thuMuc + name;
-            }
+                string thuMuc = "/DataI";
 
-            entertainmentEntities2 db = new entertainmentEntities2();
+                // Save the first image
+                string name1 = Path.GetFileName(file1.FileName);
+                var fullPath1 = Path.Combine(Server.MapPath(thuMuc), name1);
+                file1.SaveAs(fullPath1);
+                model.Image = Path.Combine(thuMuc, name1);
+
+                // Save the second image
+                string name2 = Path.GetFileName(file2.FileName);
+                var fullPath2 = Path.Combine(Server.MapPath(thuMuc), name2);
+                file2.SaveAs(fullPath2);
+                model.Imagee = Path.Combine(thuMuc, name2);
+
+                // Save the second image
+                string name3 = Path.GetFileName(file3.FileName);
+                var fullPath3 = Path.Combine(Server.MapPath(thuMuc), name3);
+                file3.SaveAs(fullPath3);
+                model.Image03 = Path.Combine(thuMuc, name3);
+
+                // Save the second image
+                string name4 = Path.GetFileName(file4.FileName);
+                var fullPath4 = Path.Combine(Server.MapPath(thuMuc), name4);
+                file4.SaveAs(fullPath4);
+                model.Image04 = Path.Combine(thuMuc, name4);
+            }
+        
             db.Animals.Add(model);
             db.SaveChanges();
-            return RedirectToAction("List");
+
+            return RedirectToAction("ListAnimals");
         }
 
         public ActionResult Update(int ID)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
-            Animal model222 = db.Animals.Find(ID);
-
-            return View(model222);
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                Animal model2 = db.Animals.Find(ID);
+                return View(model2);
+            }
         }
         [HttpPost]
-        public ActionResult Update(Animal model, HttpPostedFileBase file)
+        public ActionResult Update(Animal model, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
         {
-            if (file.ContentLength > 0)
+            if (file1 != null && file1.ContentLength > 0)
             {
-                string thuMuc = "/DataIo";
-                string name = file.FileName;
-                var fullPath = Server.MapPath(thuMuc) + name;
-                file.SaveAs(fullPath);
-                model.ImageA01 = thuMuc + name;
+                string thuMuc = "/DataI";
+                string name1 = Path.GetFileName(file1.FileName);
+                var fullPath1 = Path.Combine(Server.MapPath(thuMuc), name1);
+                file1.SaveAs(fullPath1);
+                model.Image = Path.Combine(thuMuc, name1);
             }
-            entertainmentEntities2 db = new entertainmentEntities2();
+
+            if (file2 != null && file2.ContentLength > 0)
+            {
+                string thuMuc = "/DataI";
+                string name2 = Path.GetFileName(file2.FileName);
+                var fullPath2 = Path.Combine(Server.MapPath(thuMuc), name2);
+                file2.SaveAs(fullPath2);
+                model.Imagee = Path.Combine(thuMuc, name2);
+            }
+
+            if (file3 != null && file3.ContentLength > 0)
+            {
+                string thuMuc = "/DataI";
+                string name3 = Path.GetFileName(file3.FileName);
+                var fullPath3 = Path.Combine(Server.MapPath(thuMuc), name3);
+                file3.SaveAs(fullPath3);
+                model.Image03 = Path.Combine(thuMuc, name3);
+            }
+            if (file4 != null && file4.ContentLength > 0)
+            {
+                string thuMuc = "/DataI";
+                string name4 = Path.GetFileName(file4.FileName);
+                var fullPath4 = Path.Combine(Server.MapPath(thuMuc), name4);
+                file4.SaveAs(fullPath4);
+                model.Image04 = Path.Combine(thuMuc, name4);
+            }
+
             var updateModel = db.Animals.Find(model.ID);
-            updateModel.NameAnimals = model.NameAnimals;
-            updateModel.NoteA = model.NoteA;
-            updateModel.BlogA = model.BlogA;
-            updateModel.ImageA01 = model.ImageA01;
+            updateModel.Name = model.Name;
+            updateModel.Note = model.Note;
+            updateModel.Blog = model.Blog;
+            updateModel.Image = model.Image;
+            updateModel.Imagee = model.Imagee;
+            updateModel.Image03 = model.Image03;
+            updateModel.Image04 = model.Image04;
+
             db.SaveChanges();
-            return RedirectToAction("List");
+            return RedirectToAction("ListAnimals");
         }
+
 
         public ActionResult Drop(int ID)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
             var updateModel = db.Animals.Find(ID);
             db.Animals.Remove(updateModel);
             db.SaveChanges();
 
-            return RedirectToAction("List");
+            return RedirectToAction("ListAnimals");
         }
     }
 }

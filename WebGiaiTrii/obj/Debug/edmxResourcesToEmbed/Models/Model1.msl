@@ -1,28 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="entertainmentModelStoreContainer" CdmEntityContainer="entertainmentEntities2">
-    <EntitySetMapping Name="Natures">
-      <EntityTypeMapping TypeName="entertainmentModel.Nature">
-        <MappingFragment StoreEntitySet="Nature">
-          <ScalarProperty Name="Blog" ColumnName="Blog" />
-          <ScalarProperty Name="Note" ColumnName="Note" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Animals">
-      <EntityTypeMapping TypeName="entertainmentModel.Animal">
-        <MappingFragment StoreEntitySet="Animals">
-          <ScalarProperty Name="BlogA" ColumnName="BlogA" />
-          <ScalarProperty Name="NoteA" ColumnName="NoteA" />
-          <ScalarProperty Name="ImageA01" ColumnName="ImageA01" />
-          <ScalarProperty Name="NameAnimals" ColumnName="NameAnimals" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Houses">
       <EntityTypeMapping TypeName="entertainmentModel.House">
         <MappingFragment StoreEntitySet="House">
@@ -66,6 +44,34 @@
           <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="idFunction" ColumnName="idFunction" />
           <ScalarProperty Name="idAccount" ColumnName="idAccount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Animals">
+      <EntityTypeMapping TypeName="entertainmentModel.Animal">
+        <MappingFragment StoreEntitySet="Animals">
+          <ScalarProperty Name="Image04" ColumnName="Image04" />
+          <ScalarProperty Name="Image03" ColumnName="Image03" />
+          <ScalarProperty Name="Imagee" ColumnName="Imagee" />
+          <ScalarProperty Name="Blog" ColumnName="Blog" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Natures">
+      <EntityTypeMapping TypeName="entertainmentModel.Nature">
+        <MappingFragment StoreEntitySet="Nature">
+          <ScalarProperty Name="Image04" ColumnName="Image04" />
+          <ScalarProperty Name="Image03" ColumnName="Image03" />
+          <ScalarProperty Name="Imagee" ColumnName="Imagee" />
+          <ScalarProperty Name="Blog" ColumnName="Blog" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

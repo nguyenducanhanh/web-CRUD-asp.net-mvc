@@ -19,5 +19,8 @@ namespace WebGiaiTrii.Models
         public string Image { get; set; }
         public string Note { get; set; }
         public string Blog { get; set; }
+        public string Imagee { get; set; }
+        public string Image03 { get; set; }
+        public string Image04 { get; set; }
     }
 }

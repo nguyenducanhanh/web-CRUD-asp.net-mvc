@@ -174,19 +174,20 @@
     <Content Include="Areas\Admin\Views\NiceHouse\ListHouse.cshtml" />
     <Content Include="Areas\Admin\Views\NiceHouse\Create.cshtml" />
     <Content Include="Areas\Admin\Views\NiceHouse\Update.cshtml" />
-    <Content Include="Areas\Admin\Views\Animals\List.cshtml" />
-    <Content Include="Areas\Admin\Views\Animals\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Animals\Update.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Animals\ListAnimals.cshtml" />
+    <Content Include="Areas\Admin\Views\Animals\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Animals\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Theme\lib\bootstrap\css\bootstrap-grid.css.map" />
-    <Content Include="Views\Home\Nature.cshtml" />
     <Content Include="Views\Home\NiceHouse.cshtml" />
-    <Content Include="Views\Home\LovelyAnimals.cshtml" />
     <Content Include="Views\Home\NiceHouseDetail.cshtml" />
+    <Content Include="Views\Home\Animal.cshtml" />
+    <Content Include="Views\Home\AnimalDetail.cshtml" />
+    <Content Include="Views\Home\Nature.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

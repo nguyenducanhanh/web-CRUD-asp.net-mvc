@@ -25,11 +25,11 @@ namespace WebGiaiTrii.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Nature> Natures { get; set; }
-        public virtual DbSet<Animal> Animals { get; set; }
         public virtual DbSet<House> Houses { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Function> Functions { get; set; }
         public virtual DbSet<Distributive> Distributives { get; set; }
+        public virtual DbSet<Animal> Animals { get; set; }
+        public virtual DbSet<Nature> Natures { get; set; }
     }
 }

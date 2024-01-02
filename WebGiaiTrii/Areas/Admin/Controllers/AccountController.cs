@@ -9,8 +9,6 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Admin/Account
-
         entertainmentEntities2 db = new entertainmentEntities2();
         public ActionResult Index()
         {
@@ -31,11 +29,11 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Login(string user, string password)
         {
-            var nhanVien = db.Accounts.SingleOrDefault(m => m.Username.ToLower() == user.ToLower() && m.Password == password);
+            var acc = db.Accounts.SingleOrDefault(m => m.Username.ToLower() == user.ToLower() && m.Password == password);
             // check code
-            if (nhanVien != null)
+            if (acc != null)
             {
-                Session["user"] = nhanVien;
+                Session["user"] = acc;
                 return RedirectToAction("Index");
             }
             else
@@ -44,11 +42,6 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
                 return View();
             }
         }
-
-
-        
-
-
 
     }
 }

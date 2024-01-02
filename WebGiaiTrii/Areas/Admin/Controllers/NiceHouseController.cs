@@ -11,10 +11,11 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
 {
     public class NiceHouseController : Controller
     {
+        entertainmentEntities2 db = new entertainmentEntities2();
         // GET: Admin/NiceHouse
         public ActionResult ListHouse()
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
+           
             if (Session["user"] == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -70,7 +71,7 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
                 model.Image04 = Path.Combine(thuMuc, name4);
             }
 
-            entertainmentEntities2 db = new entertainmentEntities2();
+           
             db.Houses.Add(model);
             db.SaveChanges();
 
@@ -80,17 +81,20 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
 
         public ActionResult Update(int ID)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
-            House model2 = db.Houses.Find(ID);
-
-            return View(model2);
+            if (Session["user"] == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                House model2 = db.Houses.Find(ID);
+                return View(model2);
+            }
         }
 
         [HttpPost]
         public ActionResult Update(House model, HttpPostedFileBase file1, HttpPostedFileBase file2, HttpPostedFileBase file3, HttpPostedFileBase file4)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
-
             if (file1 != null && file1.ContentLength > 0)
             {
                 string thuMuc = "/DataI";
@@ -142,7 +146,6 @@ namespace WebGiaiTrii.Areas.Admin.Controllers
 
         public ActionResult Drop(int ID)
         {
-            entertainmentEntities2 db = new entertainmentEntities2();
             var updateModel = db.Houses.Find(ID);
             db.Houses.Remove(updateModel);
             db.SaveChanges();
