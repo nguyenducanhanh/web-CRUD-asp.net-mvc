@@ -9,12 +9,7 @@ namespace WebGiaiTrii.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public ActionResult Nature()
-        {
-            return View();
-        }
-
+        // GET: Home      
         public entertainmentEntities2 db = new entertainmentEntities2();
         public string message = "";
 
@@ -42,10 +37,16 @@ namespace WebGiaiTrii.Controllers
             return View(mo);
         }
 
-
-        public ActionResult LovelyAnimals()
+        public ActionResult Nature()
         {
-            return View();
+            var oo = db.Natures.ToList();
+            return PartialView(oo);
+        }
+
+        public ActionResult NatureDetail(int ID)
+        {
+            Nature model2 = db.Natures.Find(ID);
+            return View(model2);
         }
     }
 }

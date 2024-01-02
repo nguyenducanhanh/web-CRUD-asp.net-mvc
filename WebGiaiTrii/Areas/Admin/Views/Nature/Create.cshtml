@@ -1,4 +1,4 @@
-﻿@model WebGiaiTrii.Models.Animal
+﻿@model WebGiaiTrii.Models.Nature
 
 @{
     ViewBag.Title = "Create";
@@ -6,13 +6,13 @@
 }
 
 <h2>Create</h2>
-@using (Html.BeginForm("Create", "Animals", FormMethod.Post, new { enctype = "multipart/form-data" }))  // liên quan đến ảnh
+@using (Html.BeginForm("Create", "Nature", FormMethod.Post, new { enctype = "multipart/form-data" }))  // liên quan đến ảnh
 
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Animal</h4>
+        <h4>Nature</h4>
         <hr />
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -31,8 +31,6 @@
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -62,7 +60,6 @@
                 @Html.ValidationMessageFor(model => model.Image04, "", new { @class = "text-danger" })
             </div>
         </div>
-
 
         <div class="form-group">
             @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })

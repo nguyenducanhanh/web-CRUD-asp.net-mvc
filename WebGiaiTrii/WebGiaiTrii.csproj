@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Areas\Admin\Controllers\AnimalsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NatureController.cs" />
     <Compile Include="Models\Account.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -179,6 +180,9 @@
     <Content Include="Areas\Admin\Views\Animals\ListAnimals.cshtml" />
     <Content Include="Areas\Admin\Views\Animals\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Animals\Update.cshtml" />
+    <Content Include="Areas\Admin\Views\Nature\ListNatures.cshtml" />
+    <Content Include="Areas\Admin\Views\Nature\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Nature\Update.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -188,6 +192,7 @@
     <Content Include="Views\Home\Animal.cshtml" />
     <Content Include="Views\Home\AnimalDetail.cshtml" />
     <Content Include="Views\Home\Nature.cshtml" />
+    <Content Include="Views\Home\NatureDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

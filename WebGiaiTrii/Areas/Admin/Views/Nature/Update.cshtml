@@ -1,28 +1,23 @@
-﻿@model WebGiaiTrii.Models.Animal
+﻿@model WebGiaiTrii.Models.Nature
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
-@using (Html.BeginForm("Create", "Animals", FormMethod.Post, new { enctype = "multipart/form-data" }))  // liên quan đến ảnh
+<h2>Update</h2>
+
+
+@using (Html.BeginForm("Update", "Nature", FormMethod.Post, new { enctype = "multipart/form-data" }))  // ảnh
 
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(m => m.ID) // update
     <div class="form-horizontal">
-        <h4>Animal</h4>
+        <h4>Natures</h4>
         <hr />
-
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.ID)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -32,34 +27,71 @@
             </div>
         </div>
 
-
-
         <div class="form-group">
             @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="file1" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <div>
+                        <img src="@Url.Content(Model.Image)" alt="Current Image" style="max-width: 100px; max-height: 100px;" />
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBox("deleteImage1") Delete current image
+                        </label>
+                    </div>
+                    @Html.HiddenFor(model => model.Image)
+                }
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Imagee, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="file2" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Imagee, "", new { @class = "text-danger" })
+                @if (!string.IsNullOrEmpty(Model.Imagee))
+                {
+                    <div>
+                        <img src="@Url.Content(Model.Imagee)" alt="Current Image" style="max-width: 100px; max-height: 100px;" />
+                    </div>
+                    <input type="checkbox" name="deleteImage1" />
+                    @Html.HiddenFor(model => model.Imagee)
+                }
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Image03, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="file3" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Image03, "", new { @class = "text-danger" })
+                @if (!string.IsNullOrEmpty(Model.Image03))
+                {
+                    <div>
+                        <img src="@Url.Content(Model.Image03)" alt="Current Image" style="max-width: 100px; max-height: 100px;" />
+                    </div>
+                    <input type="checkbox" name="deleteImage1" />
+                    @Html.HiddenFor(model => model.Image03)
+                }
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Image04, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <input type="file" name="file4" class="form-control" />
                 @Html.ValidationMessageFor(model => model.Image04, "", new { @class = "text-danger" })
+                @if (!string.IsNullOrEmpty(Model.Image04))
+                {
+                    <div>
+                        <img src="@Url.Content(Model.Image04)" alt="Current Image" style="max-width: 100px; max-height: 100px;" />
+                    </div>
+                    <input type="checkbox" name="deleteImage1" />
+                    @Html.HiddenFor(model => model.Image04)
+                }
             </div>
         </div>
 
@@ -82,10 +114,9 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
-
 
