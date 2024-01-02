@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="entertainmentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="NameUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="150" />
+    <Property Name="idAccountType" Type="int" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Animals">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NameAnimals" Type="nchar" MaxLength="40" />
+    <Property Name="ImageA01" Type="varchar(max)" />
+    <Property Name="NoteA" Type="nvarchar" MaxLength="50" />
+    <Property Name="BlogA" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'entertainment.dbo.Distributive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Distributive">
+    <Key>
+      <PropertyRef Name="idAccount" />
+      <PropertyRef Name="idFunction" />
+    </Key>
+    <Property Name="idAccount" Type="int" Nullable="false" />
+    <Property Name="idFunction" Type="int" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FunctionName" Type="nvarchar" MaxLength="150" />
+    <Property Name="FunctionType" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="Blog" Type="nvarchar" MaxLength="200" />
+    <Property Name="Imagee" Type="varchar(max)" />
+    <Property Name="Image03" Type="varchar(max)" />
+    <Property Name="Image04" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Nature">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="Image" Type="varchar(max)" />
+    <Property Name="Note" Type="nvarchar" MaxLength="50" />
+    <Property Name="Blog" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Distributive_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Distributive" Type="Self.Distributive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Distributive">
+        <PropertyRef Name="idAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Distributive_Function">
+    <End Role="Function" Type="Self.Function" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Distributive" Type="Self.Distributive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Distributive">
+        <PropertyRef Name="idFunction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="entertainmentModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Animals" EntityType="Self.Animals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Function" EntityType="Self.Function" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="House" EntityType="Self.House" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Nature" EntityType="Self.Nature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Distributive" EntityType="Self.Distributive" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Distributive].[idAccount] AS [idAccount], 
+    [Distributive].[idFunction] AS [idFunction], 
+    [Distributive].[Note] AS [Note]
+    FROM [dbo].[Distributive] AS [Distributive]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Distributive_Account" Association="Self.FK_Distributive_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Distributive" EntitySet="Distributive" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Distributive_Function" Association="Self.FK_Distributive_Function">
+      <End Role="Function" EntitySet="Function" />
+      <End Role="Distributive" EntitySet="Distributive" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

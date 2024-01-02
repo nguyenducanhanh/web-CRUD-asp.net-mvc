@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebGiaiTrii.Models.Animal>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameAnimals)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageA01)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BlogA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ID)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NameAnimals)
+    </td>
+    <td>
+
+        <img src="@item.ImageA01" style="height:100px;width:100px" />
+    </td>
+ 
+    <td>
+        @Html.DisplayFor(modelItem => item.NoteA)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BlogA)
+    </td>
+    <td>
+        @Html.ActionLink("Update", "Update", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Drop", new { id = item.ID })
+    </td>
+</tr>
+}
+
+</table>

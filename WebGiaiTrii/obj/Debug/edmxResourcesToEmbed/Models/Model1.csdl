@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="entertainmentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="entertainmentEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Natures" EntityType="entertainmentModel.Nature" />
+    <EntitySet Name="Animals" EntityType="entertainmentModel.Animal" />
+    <EntitySet Name="Houses" EntityType="entertainmentModel.House" />
+    <EntitySet Name="Accounts" EntityType="entertainmentModel.Account" />
+    <EntitySet Name="Functions" EntityType="entertainmentModel.Function" />
+    <EntitySet Name="Distributives" EntityType="entertainmentModel.Distributive" />
+    <AssociationSet Name="FK_Distributive_Account" Association="entertainmentModel.FK_Distributive_Account">
+      <End Role="Account" EntitySet="Accounts" />
+      <End Role="Distributive" EntitySet="Distributives" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Distributive_Function" Association="entertainmentModel.FK_Distributive_Function">
+      <End Role="Function" EntitySet="Functions" />
+      <End Role="Distributive" EntitySet="Distributives" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Nature">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Blog" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Animal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="NameAnimals" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="ImageA01" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NoteA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BlogA" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Blog" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Imagee" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image03" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Image04" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NameUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="idAccountType" Type="Int32" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Distributives" Relationship="entertainmentModel.FK_Distributive_Account" FromRole="Account" ToRole="Distributive" />
+  </EntityType>
+  <EntityType Name="Function">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="FunctionName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="FunctionType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Distributives" Relationship="entertainmentModel.FK_Distributive_Function" FromRole="Function" ToRole="Distributive" />
+  </EntityType>
+  <EntityType Name="Distributive">
+    <Key>
+      <PropertyRef Name="idAccount" />
+      <PropertyRef Name="idFunction" />
+    </Key>
+    <Property Name="idAccount" Type="Int32" Nullable="false" />
+    <Property Name="idFunction" Type="Int32" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="entertainmentModel.FK_Distributive_Account" FromRole="Distributive" ToRole="Account" />
+    <NavigationProperty Name="Function" Relationship="entertainmentModel.FK_Distributive_Function" FromRole="Distributive" ToRole="Function" />
+  </EntityType>
+  <Association Name="FK_Distributive_Account">
+    <End Type="entertainmentModel.Account" Role="Account" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="entertainmentModel.Distributive" Role="Distributive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Distributive">
+        <PropertyRef Name="idAccount" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Distributive_Function">
+    <End Type="entertainmentModel.Function" Role="Function" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="entertainmentModel.Distributive" Role="Distributive" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Function">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Distributive">
+        <PropertyRef Name="idFunction" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
